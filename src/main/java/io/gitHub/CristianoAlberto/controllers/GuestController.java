@@ -20,7 +20,7 @@ public class GuestController {
     }
     @GetMapping
     public CompletableFuture<ResponseEntity<List<GuestEntity>>> getAllGuests(){
-        List<GuestEntity> guests = future.guestService.getAllGuests();
-        return CompletableFuture.completedFuture(new ResponseEntity<>(guests, HttpStatus.OK));
+        return guestService.getAllGuests()
+                .thenApply(guests -> new ResponseEntity<>(guests, HttpStatus.OK));
     }
 }
