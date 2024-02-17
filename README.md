@@ -11,7 +11,7 @@ This is a simple API for managing guests.
 
 - Java SpringBoot
 
-## Pré-requisitos
+## Prerequisites
 
 - [Java jdk 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
