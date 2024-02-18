@@ -11,7 +11,7 @@ This is a simple API for managing guests.
 
 - Java SpringBoot
 
-## Pré-requisitos
+## Prerequisites
 
 - [Java jdk 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
@@ -66,6 +66,11 @@ Body:
 ```http
 Endpoint: GET /{id}
 Content-Type: application/json
+```
+
+### Delete a guest by ID
+```http
+Endpoint: DELETE /{id}
 ```
 
 **This comprehensive guide makes it easy to set up your environment, including installing MySQL. If you have any questions or issues, please feel free to get in touch. ❤🐱‍👤✨**
