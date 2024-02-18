@@ -21,18 +21,13 @@ public class GuestService {
     }
 
     @Async
-    public CompletableFuture<List<GuestEntity>> getAllGuests() {
-        return CompletableFuture.completedFuture(guestRepository.findAll());
+    public List<GuestEntity> getAllGuests() {
+        return guestRepository.findAll();
     }
 
     @Async
-    public CompletableFuture<GuestEntity> getById(Integer id) {
-        Optional<GuestEntity> guest = guestRepository.findById(id);
-        if(guest.isPresent()){
-            return CompletableFuture.completedFuture(guest.get());
-        }else {
-            return CompletableFuture.failedFuture(new EntityNotFoundException());
-        }
+    public Optional<GuestEntity> getById(Integer id) {
+       return guestRepository.findById(id);
     }
     @Async
     public CompletableFuture<GuestEntity> createGuest(GuestEntity guest) {
