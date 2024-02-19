@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +19,8 @@ public class GuestEntity {
     private Integer id;
     @NotEmpty(message = "O campo nome não pode estar vazio")
     private String name;
-    @NotEmpty(message = "O campo número não pode estar vazio")
+    @NotNull(message = "O campo número não pode estar vazio")
+    @Positive
     private Integer number;
     private Character gender;
     private Boolean confirmation;

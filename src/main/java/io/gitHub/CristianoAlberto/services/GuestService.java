@@ -2,7 +2,6 @@ package io.gitHub.CristianoAlberto.services;
 
 import io.gitHub.CristianoAlberto.models.GuestEntity;
 import io.gitHub.CristianoAlberto.repositories.GuestRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -27,36 +26,27 @@ public class GuestService {
 
     @Async
     public Optional<GuestEntity> getById(Integer id) {
-       return guestRepository.findById(id);
+        return guestRepository.findById(id);
     }
+
     @Async
     public CompletableFuture<GuestEntity> createGuest(GuestEntity guest) {
         return CompletableFuture.completedFuture(guestRepository.save(guest));
     }
+
     @Async
-    public CompletableFuture<GuestEntity> updateGuest(GuestEntity guest,Integer id){
-        return CompletableFuture.supplyAsync(() -> {
-            Optional<GuestEntity> guestOptional = guestRepository.findById(id);
-            if (guestOptional.isPresent()) {
-                GuestEntity existingGuest = guestOptional.get();
-                existingGuest.setName(guest.getName());
-                existingGuest.setNumber(guest.getNumber());
-                existingGuest.setGender(guest.getGender());
-                existingGuest.setConfirmation(guest.getConfirmation());
-                return guestRepository.save(existingGuest);
-            } else {
-                throw new EntityNotFoundException();
-            }
+    public Optional<GuestEntity> updateGuest(GuestEntity guest, Integer id) {
+        return this.getById(id).map(guestFound -> {
+            guestFound.setName(guest.getName() != null ? guest.getName() : guestFound.getName());
+            guestFound.setNumber(guest.getNumber() != null ? guest.getNumber() : guestFound.getNumber());
+            guestFound.setGender(guest.getGender() != null ? guest.getGender() : guestFound.getGender());
+            guestFound.setConfirmation(guest.getConfirmation() != null ? guest.getConfirmation() : guestFound.getConfirmation());
+            return guestRepository.save(guestFound);
         });
     }
+
     @Async
-    public CompletableFuture<Boolean> deleteGuest(Integer id) {
-        Optional<GuestEntity> guestOptional = guestRepository.findById(id);
-        if (guestOptional.isPresent()) {
-            guestRepository.deleteById(id);
-            return CompletableFuture.completedFuture(true);
-        } else {
-            return CompletableFuture.completedFuture(false);
-        }
+    public void deleteGuest(Integer id) {
+        guestRepository.deleteById(id);
     }
 }
