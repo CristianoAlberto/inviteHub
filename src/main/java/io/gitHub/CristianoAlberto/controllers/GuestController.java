@@ -37,8 +37,8 @@ public class GuestController {
     }
 
     @PostMapping("/saveGuest")
-    public CompletableFuture<ResponseEntity<GuestEntity>> createGuest(@RequestBody GuestEntity guest) {
-        return guestService.createGuest(guest).thenApply(guestData -> new ResponseEntity<>(guestData, CREATED));
+    public GuestEntity createGuest(@RequestBody GuestEntity guest) {
+        return guestService.createGuest(guest);
     }
 
     @PutMapping("/update/{id}")

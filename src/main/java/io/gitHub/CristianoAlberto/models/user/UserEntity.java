@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,24 +20,27 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User implements UserDetails {
+@AllArgsConstructor
+public class UserEntity implements UserDetails {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Integer phoneNumber;
+    private String password;
     private String email;
     private UserRols role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRols.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == UserRols.ADMIN)
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
@@ -65,37 +69,42 @@ public class User implements UserDetails {
     }
 
     public static class Builder {
-        private Integer id;
         private String name;
         private Integer phoneNumber;
+        private String password;
         private String email;
         private UserRols role;
 
-        public User.Builder name(String name){
+        public UserEntity.Builder name(String name) {
             this.name = name;
             return this;
         }
 
-        public User.Builder phoneNumber(Integer phoneNumber){
+        public UserEntity.Builder phoneNumber(Integer phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
-        public User.Builder email(String email){
+        public UserEntity.Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UserEntity.Builder email(String email) {
             this.email = email;
             return this;
         }
 
-        public User.Builder role(UserRols role){
+        public UserEntity.Builder role(UserRols role) {
             this.role = role;
             return this;
         }
 
-        public User build(){
-            User user  = new User();
-            user.id = this.id;
+        public UserEntity build() {
+            UserEntity user = new UserEntity();
             user.name = this.name;
             user.phoneNumber = this.phoneNumber;
+            user.password = this.password;
             user.email = this.email;
             user.role = this.role;
             return user;

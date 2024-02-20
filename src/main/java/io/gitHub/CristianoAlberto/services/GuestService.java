@@ -30,18 +30,19 @@ public class GuestService {
     }
 
     @Async
-    public CompletableFuture<GuestEntity> createGuest(GuestEntity guest) {
-        return CompletableFuture.completedFuture(guestRepository.save(guest));
+    public GuestEntity createGuest(GuestEntity guest) {
+        return guestRepository.save(guest);
     }
 
     @Async
     public Optional<GuestEntity> updateGuest(GuestEntity guest, Integer id) {
         return this.getById(id).map(guestFound -> {
-            guestFound.setName(guest.getName() != null ? guest.getName() : guestFound.getName());
-            guestFound.setNumber(guest.getNumber() != null ? guest.getNumber() : guestFound.getNumber());
-            guestFound.setGender(guest.getGender() != null ? guest.getGender() : guestFound.getGender());
-            guestFound.setConfirmation(guest.getConfirmation() != null ? guest.getConfirmation() : guestFound.getConfirmation());
-            return guestRepository.save(guestFound);
+            GuestEntity.Builder builder = new GuestEntity.Builder()
+                    .name(guest.getName() != null ? guest.getName() : guestFound.getName())
+                    .number(guest.getNumber() != null ? guest.getNumber() : guestFound.getNumber())
+                    .gender(guest.getGender() != null ? guest.getGender() : guestFound.getGender())
+                    .confirmation(guest.getConfirmation() != null ? guest.getConfirmation() : guestFound.getConfirmation());
+            return guestRepository.save(builder.build());
         });
     }
 
