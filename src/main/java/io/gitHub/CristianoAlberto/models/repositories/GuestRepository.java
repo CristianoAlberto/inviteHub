@@ -1,4 +1,4 @@
-package io.gitHub.CristianoAlberto.repositories;
+package io.gitHub.CristianoAlberto.models.repositories;
 
 import io.gitHub.CristianoAlberto.models.GuestEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

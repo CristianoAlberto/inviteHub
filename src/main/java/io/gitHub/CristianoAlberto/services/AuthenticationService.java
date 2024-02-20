@@ -4,7 +4,7 @@ import io.gitHub.CristianoAlberto.configurations.TokenService;
 import io.gitHub.CristianoAlberto.models.user.AuthenticationDTO;
 import io.gitHub.CristianoAlberto.models.user.RegisterDTO;
 import io.gitHub.CristianoAlberto.models.user.UserEntity;
-import io.gitHub.CristianoAlberto.repositories.UserRepository;
+import io.gitHub.CristianoAlberto.models.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

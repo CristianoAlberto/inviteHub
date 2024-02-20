@@ -1,6 +1,6 @@
 package io.gitHub.CristianoAlberto.services;
 
-import io.gitHub.CristianoAlberto.repositories.UserRepository;
+import io.gitHub.CristianoAlberto.models.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
