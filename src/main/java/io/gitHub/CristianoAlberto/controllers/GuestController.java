@@ -2,13 +2,11 @@ package io.gitHub.CristianoAlberto.controllers;
 
 import io.gitHub.CristianoAlberto.models.GuestEntity;
 import io.gitHub.CristianoAlberto.services.GuestService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 import static org.springframework.http.HttpStatus.*;
 
