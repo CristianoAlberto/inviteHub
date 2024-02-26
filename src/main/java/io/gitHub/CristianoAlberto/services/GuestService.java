@@ -41,6 +41,7 @@ public class GuestService {
                     .number(guest.getNumber() != null ? guest.getNumber() : guestFound.getNumber())
                     .gender(guest.getGender() != null ? guest.getGender() : guestFound.getGender())
                     .confirmation(guest.getConfirmation() != null ? guest.getConfirmation() : guestFound.getConfirmation());
+
             return guestRepository.save(builder.build());
         });
     }

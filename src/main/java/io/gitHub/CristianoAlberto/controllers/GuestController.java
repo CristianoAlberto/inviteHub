@@ -12,6 +12,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/guests")
+@CrossOrigin(origins = "http://localhost:4200")
 public class GuestController {
     private final GuestService guestService;
 

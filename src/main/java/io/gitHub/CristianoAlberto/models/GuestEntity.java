@@ -68,6 +68,7 @@ public class GuestEntity {
         public GuestEntity build() {
             GuestEntity guest = new GuestEntity();
             guest.id = this.id;
+            guest.name = this.name;
             guest.number = this.number;
             guest.gender = this.gender;
             guest.confirmation = this.confirmation;
